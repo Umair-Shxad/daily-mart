@@ -1,10 +1,15 @@
+import { BurgerMenuProvider } from "./context/useMenuToggle";
+import Homepage from "./pages/Homepage";
 import Footer from "./ui/Footer";
 import Header from "./ui/Header";
 
 function App() {
   return (
     <>
-      <Header />
+      <BurgerMenuProvider>
+        <Header />
+        <Homepage />
+      </BurgerMenuProvider>
       <Footer />
     </>
   );

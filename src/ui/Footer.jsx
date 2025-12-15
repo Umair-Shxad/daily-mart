@@ -13,11 +13,11 @@ import {
 function Footer() {
   return (
     <footer className="pt-10 pb-5 bg-gray-900 text-gray-300">
-      <div className="container mx-auto px-4">
+      <div className="container">
         {/* ROW */}
-        <div className="row">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 gap-y-8">
           {/* COL 1 - CONTACT */}
-          <div className="col-3">
+          <div>
             <h3 className="text-lg font-light mb-4">Contact us</h3>
 
             <ul className="space-y-3 text-sm">
@@ -55,7 +55,7 @@ function Footer() {
           </div>
 
           {/* COL 2 - SHOPPING */}
-          <div className="col-3">
+          <div>
             <h3 className="text-lg font-light mb-4">Shopping</h3>
             <ul className="space-y-2 text-sm">
               <li>
@@ -80,7 +80,7 @@ function Footer() {
           </div>
 
           {/* COL 3 - INFORMATION */}
-          <div className="col-3">
+          <div>
             <h3 className="text-lg font-light mb-4">Information</h3>
             <ul className="space-y-2 text-sm">
               <li>
@@ -105,7 +105,7 @@ function Footer() {
           </div>
 
           {/* COL 4 - SUBSCRIBE */}
-          <div className="col-3">
+          <div>
             <h3 className="text-lg font-light mb-4">Let’s keep in touch</h3>
 
             <p className="text-sm mb-4">
@@ -139,14 +139,14 @@ function Footer() {
         </div>
 
         {/* BOTTOM BAR */}
-        <div className="row mt-12 pt-5 border-t border-gray-700">
-          <div className="col-6">
+        <div className="grid justify-center sm:grid-cols-2 gap-4 items-center mt-12 pt-5 border-t border-gray-700">
+          <div>
             {/* Copyright */}
             <p className="text-sm opacity-75">
               © {new Date().getFullYear()} YourStore. All Rights Reserved.
             </p>
           </div>
-          <div className="col-6">
+          <div>
             {/* Secure Payments */}
             <div className="flex items-center gap-6 justify-end text-4xl">
               <FaCcVisa />

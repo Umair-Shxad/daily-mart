@@ -1,15 +1,15 @@
 function Topbar() {
   return (
-    <div className="bg-(--clr-grey)">
-      <div className="container mx-auto py-2">
-        <div className="row">
-          <div className="w-1/3">
+    <div className="bg-(--clr-grey) hidden lg:block">
+      <div className="container py-2">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 gap-y-2 items-center">
+          <div className="text-center md:text-left">
             <a href="tel:(+84) 0123 456 789" className="text-body">
               (+84) 0123 456 789
             </a>
           </div>
 
-          <div className="w-1/3">
+          <div>
             <p className="text-center text-body">
               Get Free delivery from $2000{" "}
               <a
@@ -21,9 +21,9 @@ function Topbar() {
             </p>
           </div>
 
-          <div className="w-1/3">
+          <div className="text-center md:text-left">
             <div className="nav">
-              <ul className="flex justify-end flex-wrap gap-4">
+              <ul className="flex justify-center md:justify-end flex-wrap gap-4">
                 <li>
                   <a href="#" className="text-body">
                     My Account
