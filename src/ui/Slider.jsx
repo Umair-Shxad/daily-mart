@@ -5,6 +5,9 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { BsArrowRight } from "react-icons/bs";
+
+import Button from "./Button";
 
 function Slider() {
   const slides = [
@@ -64,16 +67,15 @@ function Slider() {
                     className="mb-1 text-5xl font-Sans font-semibold"
                     dangerouslySetInnerHTML={{ __html: slide.title }}
                   ></h1>
-                  <span className="font-kaushan text-xl font-light block">
+                  <span className="font-kaushan text-xl font-light">
                     {slide.extraText}
                   </span>
-                  <a
-                    class="btn stretched-links borders d-inline-flex align-items-center"
-                    href={slide.ctaLink}
-                  >
-                    {slide.ctaText}
-                    <i class="lni lni-arrow-right ms-2"></i>
-                  </a>
+                  <div className="mt-8">
+                    <Button btnType="link" variation="v1">
+                      {slide.ctaText}
+                      <BsArrowRight className="ms-3 transition-all duration-300 hover:text-white" />
+                    </Button>
+                  </div>
                 </div>
               </div>
             </SwiperSlide>
