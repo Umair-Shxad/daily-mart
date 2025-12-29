@@ -48,7 +48,7 @@ function Navigation() {
               {item.label}
             </a>
             {item.hasChildren && (
-              <ul className="hidden group-hover:flex flex-col gap-2 absolute top-10 left-0 bg-gray-50 p-4 py-3 rounded-lg w-[180px] shadow-[0px_0px_42px_0px_rgba(32,32,32,.15)] before:content-[''] before:absolute before:-top-1 before:left-5 before:w-5 before:h-5 before:bg-inherit before:rotate-45">
+              <ul className="hidden group-hover:flex flex-col gap-2 absolute z-10 top-10 left-0 bg-gray-50 p-4 py-3 rounded-lg w-[180px] shadow-[0px_0px_42px_0px_rgba(32,32,32,.15)] before:content-[''] before:absolute before:-top-1 before:left-5 before:w-5 before:h-5 before:bg-inherit before:rotate-45">
                 {item.dropdown.map((dropdown, i) => (
                   <li
                     className="block border-b border-gray-300 last:border-b-0"

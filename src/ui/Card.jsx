@@ -4,10 +4,10 @@ import { MdOutlineFavoriteBorder } from "react-icons/md";
 function Card() {
   return (
     <div className="relative group">
-      <span class="absolute top-3 left-3 z-10 inline-flex items-center rounded-xs bg-green-500 px-3 py-1 text-xs uppercase font-medium text-white inset-ring inset-ring-gray-500/10">
+      <span className="absolute top-3 left-3 z-10 inline-flex items-center rounded-xs bg-green-500 px-3 py-1 text-xs uppercase font-medium text-white inset-ring inset-ring-gray-500/10">
         Sale
       </span>
-      <span class="absolute top-3 right-3 z-10 inline-flex items-center rounded-4xl bg-white p-2 text-xl uppercase font-medium text-white">
+      <span className="absolute top-3 right-3 z-10 inline-flex items-center rounded-4xl bg-white p-2 text-xl uppercase font-medium text-white">
         <MdOutlineFavoriteBorder className="text-black" />
       </span>
       <div className="w-full h-[300px] bg-amber-300 relative">

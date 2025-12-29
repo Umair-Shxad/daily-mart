@@ -49,8 +49,8 @@ function Slider() {
           bulletActiveClass: "custom-bullet-active",
         }}
         navigation
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
+        // onSlideChange={() => console.log("slide change")}
+        // onSwiper={(swiper) => console.log(swiper)}
       >
         {slides.map((slide) => {
           return (

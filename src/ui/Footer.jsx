@@ -143,7 +143,7 @@ function Footer() {
           <div>
             {/* Copyright */}
             <p className="text-sm opacity-75">
-              © {new Date().getFullYear()} YourStore. All Rights Reserved.
+              © {new Date().getFullYear()} Daily Mart. All Rights Reserved.
             </p>
           </div>
           <div>
