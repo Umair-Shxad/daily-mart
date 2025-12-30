@@ -1,9 +1,9 @@
 function Logo({ className }) {
   return (
     <div
-      className={`flex items-center gap-2 font-bold tracking-tighter ${className}`}
+      className={`flex items-center gap-1 font-bold tracking-tighter ${className}`}
     >
-      <div className="w-10 h-10 bg-brand rounded-lg flex items-center justify-center text-white">
+      <div className="w-10 h-10 mr-1 bg-brand rounded-lg flex items-center justify-center text-white">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"

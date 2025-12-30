@@ -2,6 +2,7 @@ import { BsArrowRight, BsInstagram } from "react-icons/bs";
 import Card from "../ui/Card";
 import Slider from "../ui/Slider";
 import { INSTAGRAM_IMAGES } from "../constants";
+import Button from "../ui/Button";
 
 function Homepage() {
   return (
@@ -18,6 +19,12 @@ function Homepage() {
           <Card />
           <Card />
           <Card />
+        </div>
+        <div className="mt-10 flex justify-center">
+          <Button as="a" href="#" variant="v1">
+            View More
+            <BsArrowRight className="ms-3 transition-all duration-300 hover:text-white" />
+          </Button>
         </div>
       </div>
       {/* Promo Banner */}
@@ -43,14 +50,15 @@ function Homepage() {
             animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis
             est et expedita distinctio.
           </p>
-          <button className="bg-white text-black px-10 py-4 font-bold flex items-center gap-2 mx-auto hover:bg-brand hover:text-white transition-all uppercase tracking-tight">
-            Start Shopping <BsArrowRight size={18} />
-          </button>
+          <Button as="a" href="#" variant="v2">
+            Start Shopping
+            <BsArrowRight className="ms-3 transition-all duration-300 hover:text-white" />
+          </Button>
         </div>
       </section>
 
       {/* Instagram Gallery */}
-      <section className="py-20 text-center">
+      <section className="py-15 text-center">
         <div className="mb-12">
           <p className="text-brand font-bold text-sm">@mahak_71</p>
           <h2 className="text-3xl font-bold font-poppins font-kaushan italic text-gray-200 -mt-2">
@@ -77,7 +85,7 @@ function Homepage() {
       </section>
 
       {/* Service Badges */}
-      <section className="py-12 border-y border-gray-100 max-w-7xl mx-auto px-4 md:px-12 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <section className="pb-15 border-y border-gray-100 max-w-7xl mx-auto px-4 md:px-12 grid grid-cols-1 md:grid-cols-4 gap-8">
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 flex items-center justify-center text-brand">
             <svg
