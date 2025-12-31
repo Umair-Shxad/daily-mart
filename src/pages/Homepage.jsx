@@ -3,6 +3,7 @@ import Card from "../ui/Card";
 import Slider from "../ui/Slider";
 import { INSTAGRAM_IMAGES } from "../constants";
 import Button from "../ui/Button";
+import Modal from "../ui/Modal";
 
 function Homepage() {
   return (
@@ -27,6 +28,9 @@ function Homepage() {
           </Button>
         </div>
       </div>
+
+      <Modal />
+
       {/* Promo Banner */}
       <section
         className="relative h-[500px] flex items-center justify-center overflow-hidden bg-fixed bg-center bg-cover"
@@ -50,7 +54,7 @@ function Homepage() {
             animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis
             est et expedita distinctio.
           </p>
-          <Button as="a" href="#" variant="v2">
+          <Button as="a" href="#" variant="v2" className="w-max mx-auto">
             Start Shopping
             <BsArrowRight className="ms-3 transition-all duration-300 hover:text-white" />
           </Button>
