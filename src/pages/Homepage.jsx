@@ -3,7 +3,7 @@ import Card from "../ui/Card";
 import Slider from "../ui/Slider";
 import { INSTAGRAM_IMAGES } from "../constants";
 import Button from "../ui/Button";
-import Modal from "../ui/Modal";
+import BookingModal from "../ui/BookingModal";
 
 function Homepage() {
   return (
@@ -29,7 +29,7 @@ function Homepage() {
         </div>
       </div>
 
-      <Modal />
+      <BookingModal />
 
       {/* Promo Banner */}
       <section

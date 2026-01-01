@@ -1,8 +1,8 @@
 function SizeList({ title = "Size:", list }) {
   return (
     <div>
-      <h3 className="font-medium text-sm">{title}</h3>
-      <div className="my-3 flex gap-1">
+      <h3 className="font-medium text-sm mb-3">{title}</h3>
+      <div className="mb-8 flex gap-1">
         {list &&
           list.map(({ size }) => {
             return (

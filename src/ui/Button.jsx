@@ -14,6 +14,7 @@ function Button({
   const variants = {
     v1: "px-5 py-3 border border-black inline-flex hover:bg-black hover:text-white",
     v2: "bg-white text-black hover:bg-brand hover:text-white uppercase",
+    v3: "px-5 py-3 border border-black bg-black text-white inline-flex hover:bg-white hover:text-black",
     default: "bg-gray-200 rounded-full hover:bg-brand",
   };
 

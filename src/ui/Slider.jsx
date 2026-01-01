@@ -52,9 +52,9 @@ function Slider() {
         // onSlideChange={() => console.log("slide change")}
         // onSwiper={(swiper) => console.log(swiper)}
       >
-        {slides.map((slide) => {
+        {slides.map((slide, i) => {
           return (
-            <SwiperSlide>
+            <SwiperSlide key={i}>
               <div
                 className="relative h-[600px]  flex item-center justify-center flex-wrap flex-col bg-cover bg-no-repeat bg-center"
                 style={{ backgroundImage: `url(${slide.bg})` }}
