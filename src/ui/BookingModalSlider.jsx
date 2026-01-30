@@ -30,7 +30,7 @@ function BookingModalSlider() {
     <div className="relative h-full">
       <Swiper
         modules={[Autoplay, Navigation]}
-        spaceBetween={50}
+        spaceBetween={0}
         slidesPerView={1}
         autoplay={{
           delay: 2500,

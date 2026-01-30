@@ -6,7 +6,10 @@ function ColorsList({ title = "Color:", list }) {
         {list &&
           list.map(({ color }) => {
             return (
-              <span className="rounded-full p-1 flex items-center justify-center border border-gray-300 w-8 h-8 cursor-pointer">
+              <span
+                className="rounded-full p-1 flex items-center justify-center border border-gray-300 w-8 h-8 cursor-pointer"
+                key={color}
+              >
                 <span
                   className={`rounded-full bg-${color} p-3 inline-block`}
                 ></span>

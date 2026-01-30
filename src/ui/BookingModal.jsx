@@ -5,12 +5,16 @@ import Button from "./Button";
 import { BiCartAdd, BiHeart } from "react-icons/bi";
 import BookingModalSlider from "./BookingModalSlider";
 
-function BookingModal() {
+function BookingModal({ close, product }) {
+  // if (openModal !== true) return null;
   return (
-    <div className="fixed inset-0 z-10 flex items-center before:content-[''] before:absolute before:inset-0 before:bg-black before:opacity-60">
+    <div className="fixed inset-0 z-9999 flex items-center before:content-[''] before:absolute before:inset-0 before:bg-black before:opacity-60">
       <div className="p-3 rounded-xl bg-white shadow-lg max-w-4xl mx-auto relative z-10">
         <div className="relative">
-          <button className="absolute right-0 rounded-2xl p-2 bg-gray-100 cursor-pointer transition-all duration-300 hover:text-gray-500 hover:bg-gray-50">
+          <button
+            className="absolute right-0 rounded-2xl p-2 bg-gray-100 cursor-pointer transition-all duration-300 hover:text-gray-500 hover:bg-gray-50"
+            onClick={close}
+          >
             <CgClose />
           </button>
         </div>
@@ -19,28 +23,33 @@ function BookingModal() {
             <BookingModalSlider />
           </div>
           <div className="w-1/2">
-            <span className="inline-flex items-center rounded-md bg-green-500 px-2 py-1 text-xs font-medium text-white inset-ring inset-ring-gray-500/10">
-              Sale
-            </span>
+            {product.sale_price && (
+              <span className="inline-flex items-center rounded-md bg-green-500 px-2 py-1 text-xs font-medium text-white inset-ring inset-ring-gray-500/10">
+                Sale
+              </span>
+            )}
+
             <h2 className="mb-1 text-3xl font-Sans font-semibold my-2">
-              Wooden Rocking Chair
+              {product.name}
             </h2>
             <div className="flex items-center gap-2">
-              <span className="font-medium text-md line-through text-gray-500">
-                $199
+              {product.sale_price && (
+                <span className="font-medium text-md line-through text-gray-500">
+                  ${product.price}
+                </span>
+              )}
+
+              <span className="font-semibold text-xl text-brand">
+                ${product.sale_price || product.price}
               </span>
-              <span className="font-semibold text-xl text-brand">$110</span>
             </div>
             <p className="text-gray-700 mt-3 mb-8 text-sm">
-              At vero eos et accusamus et iusto odio dignissimos ducimus qui
-              blanditiis praesentium voluptatum deleniti atque corrupti quos
-              dolores.
+              {product.description}
             </p>
-
             <ColorsList
               list={[
                 { color: "gray-500" },
-                { color: "red-500" },
+                { color: "brand" },
                 { color: "green-500" },
                 { color: "blue-500" },
               ]}
@@ -48,7 +57,6 @@ function BookingModal() {
             <SizeList
               list={[{ size: 28 }, { size: 30 }, { size: 32 }, { size: 34 }]}
             />
-
             <div className="flex gap-2">
               <input
                 type="number"

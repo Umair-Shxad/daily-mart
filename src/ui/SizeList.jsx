@@ -6,7 +6,10 @@ function SizeList({ title = "Size:", list }) {
         {list &&
           list.map(({ size }) => {
             return (
-              <button className="inline-flex items-center justify-center p-3 px-4 border border-gray-300 rounded-sm cursor-pointer">
+              <button
+                className="inline-flex items-center justify-center p-3 px-4 border border-gray-300 rounded-sm cursor-pointer"
+                key={size}
+              >
                 {size}
               </button>
             );

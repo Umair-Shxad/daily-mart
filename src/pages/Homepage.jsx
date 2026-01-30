@@ -1,7 +1,7 @@
 import { BsArrowRight, BsInstagram } from "react-icons/bs";
 import Card from "../ui/Card";
 import Slider from "../ui/Slider";
-import { INSTAGRAM_IMAGES } from "../constants";
+import { INSTAGRAM_IMAGES, PRODUCTS } from "../constants";
 import Button from "../ui/Button";
 import BookingModal from "../ui/BookingModal";
 
@@ -14,12 +14,9 @@ function Homepage() {
           Our Trending Products
         </h2>
         <div className="grid grid-cols-4 gap-3">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          {PRODUCTS.map((product) => (
+            <Card product={product} />
+          ))}
         </div>
         <div className="mt-10 flex justify-center">
           <Button as="a" href="#" variant="v1">
@@ -28,8 +25,6 @@ function Homepage() {
           </Button>
         </div>
       </div>
-
-      <BookingModal />
 
       {/* Promo Banner */}
       <section
