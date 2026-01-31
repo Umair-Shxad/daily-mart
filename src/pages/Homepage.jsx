@@ -3,7 +3,8 @@ import Card from "../ui/Card";
 import Slider from "../ui/Slider";
 import { INSTAGRAM_IMAGES, PRODUCTS } from "../constants";
 import Button from "../ui/Button";
-import BookingModal from "../ui/BookingModal";
+
+const featureProducts = PRODUCTS.slice(0, 8);
 
 function Homepage() {
   return (
@@ -14,12 +15,12 @@ function Homepage() {
           Our Trending Products
         </h2>
         <div className="grid grid-cols-4 gap-3">
-          {PRODUCTS.map((product) => (
+          {featureProducts.map((product) => (
             <Card product={product} />
           ))}
         </div>
         <div className="mt-10 flex justify-center">
-          <Button as="a" href="#" variant="v1">
+          <Button as="a" href="/shop" variant="v1">
             View More
             <BsArrowRight className="ms-3 transition-all duration-300 hover:text-white" />
           </Button>
@@ -49,7 +50,7 @@ function Homepage() {
             animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis
             est et expedita distinctio.
           </p>
-          <Button as="a" href="#" variant="v2" className="w-max mx-auto">
+          <Button as="a" href="/shop" variant="v2" className="w-max mx-auto">
             Start Shopping
             <BsArrowRight className="ms-3 transition-all duration-300 hover:text-white" />
           </Button>

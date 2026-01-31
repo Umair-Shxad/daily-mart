@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Button({
   as = "button", // button | a
   href,
@@ -33,9 +35,9 @@ function Button({
 
   if (as === "a" && href) {
     return (
-      <a href={href} className={classes} {...props}>
+      <Link to={href} className={classes} {...props}>
         {content}
-      </a>
+      </Link>
     );
   }
 

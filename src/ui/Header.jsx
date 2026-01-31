@@ -6,6 +6,7 @@ import Search from "./Search";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useMenuToggle } from "../context/useMenuToggle";
 import Sidebar from "./Sidebar";
+import { Link } from "react-router-dom";
 
 function Header() {
   const { isOpenSidebar, toggleSidebar } = useMenuToggle();
@@ -24,9 +25,9 @@ function Header() {
               </button>
             </div>
             <div className="flex">
-              <div className="">
+              <Link to="/" className="">
                 <Logo />
-              </div>
+              </Link>
 
               <div className="ms-15 hidden md:block">
                 <Navigation />

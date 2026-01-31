@@ -71,7 +71,7 @@ function Slider() {
                     {slide.extraText}
                   </span>
                   <div className="mt-8">
-                    <Button as="a" href="#" variant="v1">
+                    <Button as="a" href="/shop" variant="v1">
                       {slide.ctaText}
                       <BsArrowRight className="ms-3 transition-all duration-300 hover:text-white" />
                     </Button>

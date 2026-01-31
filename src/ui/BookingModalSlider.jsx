@@ -8,19 +8,7 @@ import "swiper/css/navigation";
 import { useRef, useState } from "react";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 
-function BookingModalSlider() {
-  const slides = [
-    {
-      img: "/images/banner-modern.png",
-    },
-    {
-      img: "/images/banner-new-col.png",
-    },
-    {
-      img: "/images/banner-classic.png",
-    },
-  ];
-
+function BookingModalSlider({ galleryImages }) {
   // 1. Create refs for the navigation elements
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
@@ -44,12 +32,12 @@ function BookingModalSlider() {
         onInit={() => setInit(true)}
         className="relative h-full"
       >
-        {slides.map((slide, i) => {
+        {galleryImages.map((slide, i) => {
           return (
             <SwiperSlide className="relative h-full" key={i}>
               <div
                 className="relative h-full flex item-center justify-center flex-wrap flex-col bg-cover bg-no-repeat bg-center"
-                style={{ backgroundImage: `url(${slide.img})` }}
+                style={{ backgroundImage: `url(${slide})` }}
               ></div>
             </SwiperSlide>
           );

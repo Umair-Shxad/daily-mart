@@ -20,7 +20,7 @@ function BookingModal({ close, product }) {
         </div>
         <div className="flex gap-4">
           <div className="w-1/2">
-            <BookingModalSlider />
+            <BookingModalSlider galleryImages={product.gallery_images} />
           </div>
           <div className="w-1/2">
             {product.sale_price && (
@@ -46,16 +46,9 @@ function BookingModal({ close, product }) {
             <p className="text-gray-700 mt-3 mb-8 text-sm">
               {product.description}
             </p>
-            <ColorsList
-              list={[
-                { color: "gray-500" },
-                { color: "brand" },
-                { color: "green-500" },
-                { color: "blue-500" },
-              ]}
-            />
+            <ColorsList list={product.colors} />
             <SizeList
-              list={[{ size: 28 }, { size: 30 }, { size: 32 }, { size: 34 }]}
+              list={product.sizes}
             />
             <div className="flex gap-2">
               <input

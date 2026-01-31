@@ -23,7 +23,7 @@ function Card({ product }) {
         <div className="w-full h-[300px] bg-amber-300 relative">
           <img
             className="w-full h-full object-cover"
-            src={product.image_url}
+            src={product.main_image_url}
             alt=""
           />
 

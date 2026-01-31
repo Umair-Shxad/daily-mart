@@ -1,10 +1,12 @@
+import { Link } from "react-router-dom";
+
 const nav = [
   {
-    link: "#",
+    link: "/",
     label: "Home",
   },
   {
-    link: "#",
+    link: "/shop",
     label: "Shop",
     hasChildren: true,
     dropdown: [
@@ -41,12 +43,12 @@ function Navigation() {
             className={`relative block ${item?.hasChildren ? "group" : ""}`}
             key={index}
           >
-            <a
-              href={item.link}
+            <Link
+              to={item.link}
               className="block hover:text-brand transition-all duration-300 px-3 py-2"
             >
               {item.label}
-            </a>
+            </Link>
             {item.hasChildren && (
               <ul className="hidden group-hover:flex flex-col gap-2 absolute z-10 top-10 left-0 bg-gray-50 p-4 py-3 rounded-lg w-[180px] shadow-[0px_0px_42px_0px_rgba(32,32,32,.15)] before:content-[''] before:absolute before:-top-1 before:left-5 before:w-5 before:h-5 before:bg-inherit before:rotate-45">
                 {item.dropdown.map((dropdown, i) => (
@@ -54,12 +56,12 @@ function Navigation() {
                     className="block border-b border-gray-300 last:border-b-0"
                     key={i}
                   >
-                    <a
-                      href={dropdown.link}
+                    <Link
+                      to={dropdown.link}
                       className="block text-sm transition-all duration-300 py-2 hover:text-brand hover:translate-x-2"
                     >
                       {dropdown.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
