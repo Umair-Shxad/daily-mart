@@ -16,7 +16,7 @@ function Homepage() {
         </h2>
         <div className="grid grid-cols-4 gap-3">
           {featureProducts.map((product) => (
-            <Card product={product} />
+            <Card key={product.id} product={product} />
           ))}
         </div>
         <div className="mt-10 flex justify-center">

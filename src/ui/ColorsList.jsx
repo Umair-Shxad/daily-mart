@@ -1,8 +1,8 @@
-function ColorsList({ title = "Color:", list }) {
+function ColorsList({ title, list }) {
   return (
     <div>
-      <h3 className="font-medium text-sm mb-3">{title}</h3>
-      <div className="mb-8 flex gap-1">
+      {title && <h3 className="font-medium text-sm mb-3">{title}</h3>}
+      <div className="mb-8 flex gap-1 flex-wrap">
         {list &&
           list.map((color) => {
             return (

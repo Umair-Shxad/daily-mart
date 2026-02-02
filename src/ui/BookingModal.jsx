@@ -46,10 +46,8 @@ function BookingModal({ close, product }) {
             <p className="text-gray-700 mt-3 mb-8 text-sm">
               {product.description}
             </p>
-            <ColorsList list={product.colors} />
-            <SizeList
-              list={product.sizes}
-            />
+            <ColorsList title="Color:" list={product.colors} />
+            <SizeList title="Size:" list={product.sizes} />
             <div className="flex gap-2">
               <input
                 type="number"
