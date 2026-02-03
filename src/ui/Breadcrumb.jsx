@@ -4,10 +4,22 @@ import SizeList from "./SizeList";
 import ColorsList from "./ColorsList";
 import { PRODUCTS } from "../constants";
 import PriceRangeSlider from "./PriceRangeSlider";
+import { useState } from "react";
 const sizes = [...new Set([...PRODUCTS.map((prod) => prod.sizes)].flat())];
 const colors = [...new Set([...PRODUCTS.map((prod) => prod.colors)].flat())];
 
 function Breadcrumb({ bgColor, parentPage, childPage, children }) {
+  const [show, setShow] = useState({
+    mens: false,
+    womens: false,
+  });
+
+  function toggleCollapse(key) {
+    setShow((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
+  }
   return (
     <section className={`border-b border-gray-200 bg-${bgColor}`}>
       <div className="container flex flex-wrap items-center py-4 gap-2">
@@ -49,16 +61,19 @@ function Breadcrumb({ bgColor, parentPage, childPage, children }) {
                 </h6>
               </div>
               <div className="text-sm mb-4">
-                <a
-                  href="/shop-style-4#mens"
-                  className="text-lg flex items-center justify-between mb-3"
-                >
-                  Men's
-                  <span className="bg-gray-200 rounded-full p-0.5 text-lg text-brand">
+                <div className="flex items-center justify-between mb-3">
+                  <a href="/shop-style-4#mens" className="text-lg">
+                    Men's
+                  </a>
+                  <span
+                    className="bg-gray-200 rounded-full p-0.5 text-lg text-brand cursor-pointer"
+                    onClick={() => toggleCollapse("mens")}
+                  >
                     <BiChevronDown />
                   </span>
-                </a>
-                <div id="mens">
+                </div>
+
+                <div className={`${!show.mens ? "hidden" : ""}`}>
                   <ul className="space-y-2">
                     <li>
                       <a
@@ -112,16 +127,18 @@ function Breadcrumb({ bgColor, parentPage, childPage, children }) {
                 </div>
               </div>
               <div className="text-sm">
-                <a
-                  href="/shop-style-4#womens"
-                  className="text-lg flex items-center justify-between mb-3"
-                >
-                  Women's
-                  <span className="bg-gray-200 rounded-full p-0.5 text-lg text-brand">
+                <div className="flex items-center justify-between mb-3">
+                  <a href="/shop-style-4#womens" className="text-lg">
+                    Women's
+                  </a>
+                  <span
+                    className="bg-gray-200 rounded-full p-0.5 text-lg text-brand cursor-pointer"
+                    onClick={() => toggleCollapse("womens")}
+                  >
                     <BiChevronDown />
                   </span>
-                </a>
-                <div id="womens">
+                </div>
+                <div className={`${!show.womens ? "hidden" : ""}`}>
                   <ul className="space-y-2">
                     <li>
                       <a
