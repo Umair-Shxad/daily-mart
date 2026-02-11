@@ -13,8 +13,27 @@ const NUM_OF_ITEM = 8;
 function Shop() {
   const [visibleCount, setVisibleCount] = useState(NUM_OF_ITEM);
   const products = PRODUCTS.slice(0, visibleCount);
+  const [openFilters, setOpenFilters] = useState(false);
+  const [gridLayoutChange, setGridLayoutChange] = useState({
+    fourCol: true,
+    threeCol: false,
+    twoCol: false,
+  });
 
-  function LoadMore() {
+  function toggleGridLayout(key) {
+    setGridLayoutChange((prev) => ({
+      fourCol: false,
+      threeCol: false,
+      twoCol: false,
+      [key]: !prev[key],
+    }));
+  }
+
+  function toggleOpenFilters() {
+    setOpenFilters((open) => !open);
+  }
+
+  function loadMore() {
     setVisibleCount((count) => count + NUM_OF_ITEM);
   }
 
@@ -35,23 +54,30 @@ function Shop() {
         </div>
       </section>
 
-      <Breadcrumb parentPage={{ url: "/shop", name: "Shop", active: true }}>
+      <Breadcrumb
+        openFilters={openFilters}
+        parentPage={{ url: "/shop", name: "Shop", active: true }}
+      >
         <div>
-          <Filters />
+          <Filters
+            toggleOpenFilters={toggleOpenFilters}
+            toggleGridLayout={toggleGridLayout}
+          />
         </div>
       </Breadcrumb>
 
       <div className="container py-15">
-        <div className="grid grid-cols-4 gap-3">
+        <div
+          className={`grid ${gridLayoutChange.fourCol && "grid-cols-4"} ${gridLayoutChange.threeCol && "grid-cols-3"} ${gridLayoutChange.twoCol && "grid-cols-2"} gap-3`}
+        >
           {products.map((product) => (
             <Card key={product.id} product={product} />
           ))}
         </div>
         <div className="mt-10 flex justify-center">
           {visibleCount < maxProd && (
-            <Button variant="v1" onClick={LoadMore}>
+            <Button variant="v1" onClick={loadMore}>
               Load More
-              {visibleCount}
               <BsArrowRight className="ms-3 transition-all duration-300 hover:text-white" />
             </Button>
           )}
