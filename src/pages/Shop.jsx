@@ -68,10 +68,14 @@ function Shop() {
 
       <div className="container py-15">
         <div
-          className={`grid ${gridLayoutChange.fourCol && "grid-cols-4"} ${gridLayoutChange.threeCol && "grid-cols-3"} ${gridLayoutChange.twoCol && "grid-cols-2"} gap-3`}
+          className={`grid gap-3 ${gridLayoutChange.fourCol && "grid-cols-4"} ${gridLayoutChange.threeCol && "grid-cols-3"} ${gridLayoutChange.twoCol && "grid-cols-2 gap-10"} `}
         >
           {products.map((product) => (
-            <Card key={product.id} product={product} />
+            <Card
+              key={product.id}
+              product={product}
+              gridLayoutChange={gridLayoutChange}
+            />
           ))}
         </div>
         <div className="mt-10 flex justify-center">
