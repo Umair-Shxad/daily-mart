@@ -1,7 +1,7 @@
 import { AiOutlineTable } from "react-icons/ai";
 import { BsBorderAll, BsFilterRight, BsListUl } from "react-icons/bs";
 
-function Filters({ toggleOpenFilters, toggleGridLayout }) {
+function Filters({ toggleOpenFilters, toggleGridLayout, setSortBy }) {
   return (
     <div className="flex gap-4 justify-end">
       <div
@@ -12,12 +12,10 @@ function Filters({ toggleOpenFilters, toggleGridLayout }) {
         Filters
       </div>
       <div>
-        <select className="">
-          <option value="1">Default Sorting</option>
-          <option value="2">Sort by price: Low price</option>
-          <option value="3">Sort by price: Hight price</option>
-          <option value="4">Sort by rating</option>
-          <option value="5">Sort by trending</option>
+        <select onChange={(e) => setSortBy(e.target.value)}>
+          <option value="default">Default Sorting</option>
+          <option value="lowPrice">Sort by price: Low price</option>
+          <option value="highPrice">Sort by price: High price</option>
         </select>
       </div>
       <div className="flex items-center gap-3 text-lg">

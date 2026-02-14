@@ -7,11 +7,8 @@ function Breadcrumb({
   childPage,
   openFilters,
   mainCat,
-  size,
   setSize,
-  color,
   setColor,
-  category,
   setCategory,
   children,
 }) {
@@ -49,11 +46,8 @@ function Breadcrumb({
         {openFilters && (
           <FiltersSection
             mainCat={mainCat}
-            size={size}
             setSize={setSize}
-            color={color}
             setColor={setColor}
-            category={category}
             setCategory={setCategory}
           />
         )}

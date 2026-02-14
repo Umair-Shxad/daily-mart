@@ -5,7 +5,7 @@ import Button from "../ui/Button";
 import Breadcrumb from "../ui/Breadcrumb";
 import { useEffect, useState } from "react";
 import Filters from "../ui/Filters";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const mainCat = [...new Set(PRODUCTS.map((prod) => prod.main_category))];
 const NUM_OF_ITEM = 8;
@@ -25,31 +25,53 @@ function Shop() {
     mainCat: searchParams.get("mainCat"),
     subCat: searchParams.get("subCat"),
   });
+  const [sortBy, setSortBy] = useState(searchParams.get("sortBy") || "default");
   const [filteredProducts, setFilteredProducts] = useState(PRODUCTS);
   const products = filteredProducts.slice(0, visibleCount);
   const maxProd = filteredProducts.length;
 
-  useEffect(() => {
-    setFilteredProducts(
-      PRODUCTS.filter((p) => {
-        const matchCategory =
-          category.mainCat && category.subCat
-            ? p.main_category === category.mainCat &&
-              p.subcategory === category.subCat
-            : true;
-        const matchSize = size
-          ? p.sizes.includes(size.replace("%20", " "))
-          : true;
-        const matchColor = color
-          ? p.colors.includes(color.replace("%20", " "))
-          : true;
+  const navigate = useNavigate();
 
-        return matchCategory && matchSize && matchColor;
-      }),
-    );
+  useEffect(() => {
+    const hasActiveFilters =
+      size ||
+      color ||
+      category.mainCat ||
+      category.subCat ||
+      sortBy !== "default";
+
+    let result = PRODUCTS;
+
+    result = result.filter((p) => {
+      const matchCategory =
+        category.mainCat && category.subCat
+          ? p.main_category === category.mainCat &&
+            p.subcategory === category.subCat
+          : true;
+      const matchSize = size
+        ? p.sizes.includes(size.replace("%20", " "))
+        : true;
+      const matchColor = color
+        ? p.colors.includes(color.replace("%20", " "))
+        : true;
+
+      return matchCategory && matchSize && matchColor;
+    });
+
+    if (sortBy === "lowPrice") result.sort((a, b) => a.price - b.price);
+    if (sortBy === "highPrice") result.sort((a, b) => b.price - a.price);
+
+    setFilteredProducts(result);
 
     setVisibleCount(NUM_OF_ITEM);
-  }, [size, color, category]);
+
+    hasActiveFilters
+      ? navigate(
+          `/shop?sortBy=${sortBy}&size=${size}&color=${color}&mainCat=${category.mainCat}&subCat=${category.subCat}`,
+          { replace: true },
+        )
+      : navigate("/shop", { replace: true });
+  }, [size, color, category, sortBy]);
 
   function toggleGridLayout(key) {
     setGridLayoutChange((prev) => ({
@@ -89,17 +111,16 @@ function Shop() {
         openFilters={openFilters}
         parentPage={{ url: "/shop", name: "Shop", active: true }}
         mainCat={mainCat}
-        size={size}
         setSize={setSize}
-        color={color}
         setColor={setColor}
-        category={category}
         setCategory={setCategory}
       >
         <div>
           <Filters
             toggleOpenFilters={toggleOpenFilters}
             toggleGridLayout={toggleGridLayout}
+            sortBy={sortBy}
+            setSortBy={setSortBy}
           />
         </div>
       </Breadcrumb>
