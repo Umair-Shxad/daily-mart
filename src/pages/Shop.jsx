@@ -3,22 +3,53 @@ import Card from "../ui/Card";
 import { PRODUCTS } from "../constants";
 import Button from "../ui/Button";
 import Breadcrumb from "../ui/Breadcrumb";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Filters from "../ui/Filters";
+import { useSearchParams } from "react-router-dom";
 
 const mainCat = [...new Set(PRODUCTS.map((prod) => prod.main_category))];
-const maxProd = PRODUCTS.length;
 const NUM_OF_ITEM = 8;
 
 function Shop() {
   const [visibleCount, setVisibleCount] = useState(NUM_OF_ITEM);
-  const products = PRODUCTS.slice(0, visibleCount);
   const [openFilters, setOpenFilters] = useState(false);
   const [gridLayoutChange, setGridLayoutChange] = useState({
     fourCol: true,
     threeCol: false,
     twoCol: false,
   });
+  const [searchParams] = useSearchParams();
+  const [size, setSize] = useState(searchParams.get("size"));
+  const [color, setColor] = useState(searchParams.get("color"));
+  const [category, setCategory] = useState({
+    mainCat: searchParams.get("mainCat"),
+    subCat: searchParams.get("subCat"),
+  });
+  const [filteredProducts, setFilteredProducts] = useState(PRODUCTS);
+  const products = filteredProducts.slice(0, visibleCount);
+  const maxProd = filteredProducts.length;
+
+  useEffect(() => {
+    setFilteredProducts(
+      PRODUCTS.filter((p) => {
+        const matchCategory =
+          category.mainCat && category.subCat
+            ? p.main_category === category.mainCat &&
+              p.subcategory === category.subCat
+            : true;
+        const matchSize = size
+          ? p.sizes.includes(size.replace("%20", " "))
+          : true;
+        const matchColor = color
+          ? p.colors.includes(color.replace("%20", " "))
+          : true;
+
+        return matchCategory && matchSize && matchColor;
+      }),
+    );
+
+    setVisibleCount(NUM_OF_ITEM);
+  }, [size, color, category]);
 
   function toggleGridLayout(key) {
     setGridLayoutChange((prev) => ({
@@ -57,6 +88,13 @@ function Shop() {
       <Breadcrumb
         openFilters={openFilters}
         parentPage={{ url: "/shop", name: "Shop", active: true }}
+        mainCat={mainCat}
+        size={size}
+        setSize={setSize}
+        color={color}
+        setColor={setColor}
+        category={category}
+        setCategory={setCategory}
       >
         <div>
           <Filters
@@ -78,6 +116,10 @@ function Shop() {
             />
           ))}
         </div>
+
+        {products.length === 0 && (
+          <h2 className="text-center text-lg font-medium">No Product Found</h2>
+        )}
         <div className="mt-10 flex justify-center">
           {visibleCount < maxProd && (
             <Button variant="v1" onClick={loadMore}>

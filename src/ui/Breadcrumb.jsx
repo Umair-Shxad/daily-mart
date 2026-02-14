@@ -1,7 +1,20 @@
 import { Link } from "react-router-dom";
 import FiltersSection from "./FiltersSection";
 
-function Breadcrumb({ bgColor, parentPage, childPage, openFilters, children }) {
+function Breadcrumb({
+  bgColor,
+  parentPage,
+  childPage,
+  openFilters,
+  mainCat,
+  size,
+  setSize,
+  color,
+  setColor,
+  category,
+  setCategory,
+  children,
+}) {
   return (
     <section className={`border-b border-gray-200 bg-${bgColor}`}>
       <div className="container flex flex-wrap items-center py-4 gap-2">
@@ -33,7 +46,17 @@ function Breadcrumb({ bgColor, parentPage, childPage, openFilters, children }) {
           </div>
           <div className="">{children}</div>
         </div>
-        {openFilters && <FiltersSection />}
+        {openFilters && (
+          <FiltersSection
+            mainCat={mainCat}
+            size={size}
+            setSize={setSize}
+            color={color}
+            setColor={setColor}
+            category={category}
+            setCategory={setCategory}
+          />
+        )}
       </div>
     </section>
   );

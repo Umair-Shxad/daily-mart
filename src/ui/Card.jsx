@@ -13,7 +13,7 @@ function Card({ product, gridLayoutChange }) {
   return (
     <>
       <div
-        className={`relative group ${gridLayoutChange.twoCol && "grid grid-cols-2"}`}
+        className={`relative group ${gridLayoutChange?.twoCol && "grid grid-cols-2"}`}
       >
         <div className="w-full h-[300px] bg-amber-300 relative">
           {product.sale_price && (
@@ -39,18 +39,18 @@ function Card({ product, gridLayoutChange }) {
           </button>
         </div>
         <div
-          className={`text-center  ${gridLayoutChange.twoCol ? "text-left pl-5" : "p-3"}`}
+          className={`text-center  ${gridLayoutChange?.twoCol ? "text-left pl-5" : "p-3"}`}
         >
           <div
-            className={`text-lg ${gridLayoutChange.twoCol ? "font-medium" : "font-light"}`}
+            className={`text-lg ${gridLayoutChange?.twoCol ? "font-medium" : "font-light"}`}
           >
             {product.name}
           </div>
-          {gridLayoutChange.twoCol && (
+          {gridLayoutChange?.twoCol && (
             <p className="text-sm my-3 font-light">{product.description}</p>
           )}
           <div
-            className={`flex  items-center gap-2 ${gridLayoutChange.twoCol ? "mb-3" : "justify-center"}`}
+            className={`flex  items-center gap-2 ${gridLayoutChange?.twoCol ? "mb-3" : "justify-center"}`}
           >
             {product.sale_price && (
               <span className="font-medium text-sm line-through text-gray-500">
@@ -62,10 +62,11 @@ function Card({ product, gridLayoutChange }) {
               ${product.sale_price || product.price}
             </div>
           </div>
-
-          <Button variant="v1">
-            <BiCartAdd className="text-xl" /> Add to Cart
-          </Button>
+          {gridLayoutChange?.twoCol && (
+            <Button variant="v1">
+              <BiCartAdd className="text-xl" /> Add to Cart
+            </Button>
+          )}
         </div>
       </div>
 
