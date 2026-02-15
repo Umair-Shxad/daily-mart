@@ -1,11 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
-function PriceRangeSlider() {
+function PriceRangeSlider({ min, max, setMin, setMax, minPrice, maxPrice }) {
   const barRef = useRef(null);
   const draggingRef = useRef(null); // ← IMPORTANT
-
-  const [min, setMin] = useState(0);
-  const [max, setMax] = useState(100);
 
   function handleMouseDown(type, e) {
     e.preventDefault(); // stop text selection
@@ -19,19 +16,25 @@ function PriceRangeSlider() {
     let x = e.clientX - rect.left;
     x = Math.max(0, Math.min(x, rect.width));
 
-    const value = Math.round((x / rect.width) * 100);
+    const value = parseFloat(
+      (minPrice + (x / rect.width) * (maxPrice - minPrice)).toFixed(2),
+    );
 
-    if (draggingRef.current === "min" && value < max) {
+    if (draggingRef.current === "min" && value < max - 5) {
       setMin(value);
     }
 
-    if (draggingRef.current === "max" && value > min) {
+    if (draggingRef.current === "max" && value > min + 5) {
       setMax(value);
     }
   }
 
   function handleMouseUp() {
     draggingRef.current = null;
+  }
+
+  function getPercent(value) {
+    return ((value - minPrice) / (maxPrice - minPrice)) * 100;
   }
 
   // Attach listeners ONCE
@@ -53,8 +56,8 @@ function PriceRangeSlider() {
           <div
             className="absolute h-2 bg-black rounded-xl"
             style={{
-              left: `${min}%`,
-              width: `${max - min}%`,
+              left: `${getPercent(min)}%`,
+              width: `${getPercent(max) - getPercent(min)}%`,
             }}
           />
 
@@ -63,7 +66,7 @@ function PriceRangeSlider() {
             onMouseDown={(e) => handleMouseDown("min", e)}
             className="absolute top-1/2 w-4 h-4 bg-white border rounded-full cursor-pointer"
             style={{
-              left: `${min}%`,
+              left: `${getPercent(min)}%`,
               transform: "translate(-50%, -50%)",
             }}
           >
@@ -77,7 +80,7 @@ function PriceRangeSlider() {
             onMouseDown={(e) => handleMouseDown("max", e)}
             className="absolute top-1/2 w-4 h-4 bg-white border rounded-full cursor-pointer"
             style={{
-              left: `${max}%`,
+              left: `${getPercent(max)}%`,
               transform: "translate(-50%, -50%)",
             }}
           >

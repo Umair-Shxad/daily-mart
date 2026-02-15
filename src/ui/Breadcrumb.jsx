@@ -10,6 +10,12 @@ function Breadcrumb({
   setSize,
   setColor,
   setCategory,
+  min,
+  max,
+  setMin,
+  setMax,
+  minPrice,
+  maxPrice,
   children,
 }) {
   return (
@@ -49,6 +55,12 @@ function Breadcrumb({
             setSize={setSize}
             setColor={setColor}
             setCategory={setCategory}
+            min={min}
+            max={max}
+            setMin={setMin}
+            setMax={setMax}
+            minPrice={minPrice}
+            maxPrice={maxPrice}
           />
         )}
       </div>

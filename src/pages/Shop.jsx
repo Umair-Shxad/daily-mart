@@ -5,9 +5,18 @@ import Button from "../ui/Button";
 import Breadcrumb from "../ui/Breadcrumb";
 import { useEffect, useState } from "react";
 import Filters from "../ui/Filters";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import {
+  NavLink,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 
 const mainCat = [...new Set(PRODUCTS.map((prod) => prod.main_category))];
+const prices = PRODUCTS.map((prod) => prod.price || prod?.sale_price);
+const minPrice = Math.min(...prices);
+const maxPrice = Math.max(...prices);
+
 const NUM_OF_ITEM = 8;
 
 function Shop() {
@@ -26,20 +35,28 @@ function Shop() {
     subCat: searchParams.get("subCat"),
   });
   const [sortBy, setSortBy] = useState(searchParams.get("sortBy") || "default");
+  const [min, setMin] = useState(searchParams.get("min") || minPrice);
+  const [max, setMax] = useState(searchParams.get("max") || maxPrice);
   const [filteredProducts, setFilteredProducts] = useState(PRODUCTS);
   const products = filteredProducts.slice(0, visibleCount);
   const maxProd = filteredProducts.length;
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    const hasActiveFilters =
-      size ||
-      color ||
-      category.mainCat ||
-      category.subCat ||
-      sortBy !== "default";
+    setSize(searchParams.get("size"));
+    setColor(searchParams.get("color"));
+    setCategory({
+      mainCat: searchParams.get("mainCat"),
+      subCat: searchParams.get("subCat"),
+    });
+    setSortBy(searchParams.get("sortBy") || "default");
+    setMin(Number(searchParams.get("min")) || minPrice);
+    setMax(Number(searchParams.get("max")) || maxPrice);
+  }, [searchParams]);
 
+  useEffect(() => {
     let result = PRODUCTS;
 
     result = result.filter((p) => {
@@ -47,15 +64,22 @@ function Shop() {
         category.mainCat && category.subCat
           ? p.main_category === category.mainCat &&
             p.subcategory === category.subCat
-          : true;
+          : category.mainCat
+            ? p.main_category === category.mainCat
+            : true;
       const matchSize = size
         ? p.sizes.includes(size.replace("%20", " "))
         : true;
       const matchColor = color
         ? p.colors.includes(color.replace("%20", " "))
         : true;
+      const matchPrice =
+        min || max
+          ? (p?.sale_price || p.price) >= min &&
+            (p?.sale_price || p.price) <= max
+          : true;
 
-      return matchCategory && matchSize && matchColor;
+      return matchCategory && matchSize && matchColor && matchPrice;
     });
 
     if (sortBy === "lowPrice") result.sort((a, b) => a.price - b.price);
@@ -64,14 +88,23 @@ function Shop() {
     setFilteredProducts(result);
 
     setVisibleCount(NUM_OF_ITEM);
+  }, [size, color, category, sortBy, min, max]);
 
-    hasActiveFilters
-      ? navigate(
-          `/shop?sortBy=${sortBy}&size=${size}&color=${color}&mainCat=${category.mainCat}&subCat=${category.subCat}`,
-          { replace: true },
-        )
-      : navigate("/shop", { replace: true });
-  }, [size, color, category, sortBy]);
+  useEffect(() => {
+    const params = new URLSearchParams();
+
+    if (sortBy !== "default") params.set("sortBy", sortBy);
+    if (size) params.set("size", size);
+    if (color) params.set("color", color);
+    if (category.mainCat) params.set("mainCat", category.mainCat);
+    if (category.subCat) params.set("subCat", category.subCat);
+    if (min !== minPrice) params.set("min", min);
+    if (max !== maxPrice) params.set("max", max);
+
+    navigate(params.toString() ? `/shop?${params.toString()}` : "/shop", {
+      replace: true,
+    });
+  }, [size, color, category, sortBy, min, max]);
 
   function toggleGridLayout(key) {
     setGridLayoutChange((prev) => ({
@@ -99,7 +132,19 @@ function Shop() {
               <h1 className="mb-1 text-5xl font-Sans font-semibold">Shop</h1>
               <ul className="flex justify-center py-4 gap-4">
                 {mainCat.map((mainCat) => (
-                  <li key={mainCat}>{mainCat}</li>
+                  <li key={mainCat}>
+                    <NavLink
+                      to={`/shop?mainCat=${mainCat}`}
+                      className={() =>
+                        new URLSearchParams(location.search).get("mainCat") ===
+                        mainCat
+                          ? "text-brand"
+                          : ""
+                      }
+                    >
+                      {mainCat}
+                    </NavLink>
+                  </li>
                 ))}
               </ul>
             </div>
@@ -114,6 +159,12 @@ function Shop() {
         setSize={setSize}
         setColor={setColor}
         setCategory={setCategory}
+        min={min}
+        max={max}
+        setMin={setMin}
+        setMax={setMax}
+        minPrice={minPrice}
+        maxPrice={maxPrice}
       >
         <div>
           <Filters

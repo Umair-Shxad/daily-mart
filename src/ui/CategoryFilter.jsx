@@ -38,17 +38,17 @@ function CategoryFilter({ mainCat, setCategory }) {
       {mainCat &&
         mainCat.map((mainCat) => (
           <div className="text-sm" key={mainCat}>
-            <div className="flex items-center justify-between">
+            <div
+              className="flex items-center justify-between cursor-pointer"
+              onClick={() => toggleCollapse(mainCat)}
+            >
               <button
                 type="button"
-                className={`text-lg ${show[mainCat] ? "text-brand" : ""}`}
+                className={`text-lg cursor-pointer ${show[mainCat] ? "text-brand" : ""}`}
               >
                 {mainCat}'s
               </button>
-              <span
-                className="bg-gray-200 rounded-full p-0.5 text-lg text-brand cursor-pointer"
-                onClick={() => toggleCollapse(mainCat)}
-              >
+              <span className="bg-gray-200 rounded-full p-0.5 text-lg text-brand">
                 <BiChevronDown />
               </span>
             </div>

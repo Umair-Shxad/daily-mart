@@ -6,7 +6,18 @@ import CategoryFilter from "./CategoryFilter";
 const sizes = [...new Set([...PRODUCTS.map((prod) => prod.sizes)].flat())];
 const colors = [...new Set([...PRODUCTS.map((prod) => prod.colors)].flat())];
 
-function FiltersSection({ mainCat, setSize, setColor, setCategory }) {
+function FiltersSection({
+  mainCat,
+  setSize,
+  setColor,
+  setCategory,
+  min,
+  max,
+  setMin,
+  setMax,
+  minPrice,
+  maxPrice,
+}) {
   return (
     <>
       {/* collapse show */}
@@ -45,7 +56,14 @@ function FiltersSection({ mainCat, setSize, setColor, setCategory }) {
               </h6>
             </div>
             <div className="side-list mb-2">
-              <PriceRangeSlider />
+              <PriceRangeSlider
+                min={min}
+                max={max}
+                setMin={setMin}
+                setMax={setMax}
+                minPrice={minPrice}
+                maxPrice={maxPrice}
+              />
             </div>
           </div>
         </div>
