@@ -21,7 +21,7 @@ function Logo({ className }) {
         </svg>
       </div>
       <span className="text-black uppercase">Daily</span>
-      <span className="text-brand uppercase">Mart</span>
+      <span className="text-brand uppercase">Wear</span>
     </div>
   );
 }

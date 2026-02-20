@@ -3,8 +3,7 @@ import FiltersSection from "./FiltersSection";
 
 function Breadcrumb({
   bgColor,
-  parentPage,
-  childPage,
+  breadcrumbItems,
   openFilters,
   mainCat,
   setSize,
@@ -24,28 +23,20 @@ function Breadcrumb({
         <div className="grid grid-cols-1 md:grid-cols-2 w-full">
           <div className="flex gap-2 text-sm">
             <Link to="/">Home</Link>
-            {parentPage && (
-              <>
-                <span>/</span>
-                <Link
-                  to={parentPage.url}
-                  className={`${parentPage.active ? "text-gray-500" : ""}`}
-                >
-                  {parentPage.name}
-                </Link>
-              </>
-            )}
-            {childPage && (
-              <>
-                <span>/</span>
-                <Link
-                  to={childPage.url}
-                  className={`${childPage.active ? "text-gray-500" : ""}`}
-                >
-                  {childPage.name}
-                </Link>
-              </>
-            )}
+            {breadcrumbItems &&
+              breadcrumbItems.map(({ url, name }, index) => {
+                const isLast = index === breadcrumbItems.length - 1;
+                return (
+                  <div key={index} className="flex gap-2 text-sm">
+                    <span>/</span>
+                    {isLast ? (
+                      <span className="text-gray-500">{name}</span>
+                    ) : (
+                      <Link to={url}>{name}</Link>
+                    )}
+                  </div>
+                );
+              })}
           </div>
           <div className="">{children}</div>
         </div>
