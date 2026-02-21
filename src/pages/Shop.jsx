@@ -42,8 +42,7 @@ function Shop() {
   const maxProd = filteredProducts.length;
 
   const navigate = useNavigate();
-  const location = useLocation();
-  const currentCat = new URLSearchParams(location.search).get("mainCat");
+  const currentCat = searchParams.get("mainCat");
 
   useEffect(() => {
     setSize(searchParams.get("size"));
@@ -152,7 +151,10 @@ function Shop() {
 
       <Breadcrumb
         openFilters={openFilters}
-        breadcrumbItems={[{ url: "/shop", name: "Shop" }, ...(currentCat ? [{name: currentCat}] : [])]}
+        breadcrumbItems={[
+          { url: "/shop", name: "Shop" },
+          ...(currentCat ? [{ name: currentCat }] : []),
+        ]}
         mainCat={mainCat}
         setSize={setSize}
         setColor={setColor}

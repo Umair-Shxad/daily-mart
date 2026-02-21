@@ -9,7 +9,7 @@ import { BsArrowRight } from "react-icons/bs";
 
 import Button from "./Button";
 
-function Slider() {
+function HomeSlider() {
   const slides = [
     {
       tagline: "Super Sale",
@@ -87,4 +87,4 @@ function Slider() {
   );
 }
 
-export default Slider;
+export default HomeSlider;

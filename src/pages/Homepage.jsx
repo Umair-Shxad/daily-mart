@@ -1,6 +1,6 @@
 import { BsArrowRight, BsInstagram } from "react-icons/bs";
 import Card from "../ui/Card";
-import Slider from "../ui/Slider";
+import HomeSlider from "../ui/HomeSlider";
 import { INSTAGRAM_IMAGES, PRODUCTS } from "../constants";
 import Button from "../ui/Button";
 
@@ -9,7 +9,7 @@ const featureProducts = PRODUCTS.slice(0, 8);
 function Homepage() {
   return (
     <>
-      <Slider />
+      <HomeSlider />
       <div className="container py-15">
         <h2 className="text-center text-4xl font-medium font-Poppins mb-10">
           Our Trending Products

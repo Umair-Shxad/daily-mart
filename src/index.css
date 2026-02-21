@@ -13,6 +13,7 @@
 }
 
 @layer base {
+
   h1,
   h2,
   h3,
@@ -37,6 +38,7 @@
 }
 
 @layer components {
+
   /* Paragraphs: Consistent body text. */
   .text-body {
     @apply text-sm leading-relaxed font-normal text-(--clr-muted);
@@ -57,6 +59,7 @@
 }
 
 @layer utilities {
+
   /* Container */
   .container {
     @apply w-full mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl;
@@ -102,5 +105,10 @@
 }
 
 .custom-bullet-active {
-  @apply bg-brand w-7 h-1.5; /* longer bar when active, or w-9 h-9 for bigger circle */
+  @apply bg-brand w-7 h-1.5;
+  /* longer bar when active, or w-9 h-9 for bigger circle */
+}
+
+.prod_thumb_center .swiper-wrapper {
+  justify-content: center;
 }

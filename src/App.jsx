@@ -4,6 +4,7 @@ import Homepage from "./pages/Homepage";
 import Shop from "./pages/shop";
 import Footer from "./ui/Footer";
 import Header from "./ui/Header";
+import ShopDetails from "./pages/ShopDetails";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/shop" element={<Shop />} />
+            <Route path="/shop/:id" element={<ShopDetails />} />
           </Routes>
         </BurgerMenuProvider>
         <Footer />
