@@ -93,7 +93,7 @@ function ShopDetails() {
             <div className="mb-10">
               <RelatedProducts
                 relatedProducts={relatedProducts}
-                slidesPerView={3}
+                slidesPerView={4}
               />
             </div>
           </div>
