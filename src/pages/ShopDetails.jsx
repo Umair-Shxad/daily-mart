@@ -6,7 +6,7 @@ import ColorsList from "../ui/ColorsList";
 import { BiCartAdd, BiHeart } from "react-icons/bi";
 import Button from "../ui/Button";
 import ProductSlider from "../ui/ProductSlider";
-import Tabs from "../ui/Tabs";
+import Tabs, { Description, Reviews, Table } from "../ui/Tabs";
 import RelatedProducts from "../ui/RelatedProducts";
 
 function ShopDetails() {
@@ -83,7 +83,25 @@ function ShopDetails() {
           </div>
         </div>
 
-        <Tabs />
+        <Tabs
+          tabs={[
+            {
+              title: "Description",
+              content: <Description />,
+              type: "desc",
+            },
+            {
+              title: "Additional information",
+              content: <Table />,
+              type: "list",
+            },
+            {
+              title: "Reviews",
+              content: <Reviews />,
+              type: "review",
+            },
+          ]}
+        />
 
         {relatedProducts.length > 0 && (
           <div>
