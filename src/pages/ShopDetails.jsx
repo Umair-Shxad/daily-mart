@@ -23,7 +23,7 @@ function ShopDetails() {
       <Breadcrumb
         breadcrumbItems={[
           { url: "/shop", name: "Shop" },
-          //   ...(currentCat ? [{ name: currentCat }] : []),
+          ...(product ? [{ name: product.name }] : []),
         ]}
       />
 
